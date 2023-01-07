@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="0dp"
+        android:end="800dp"
+        android:start="0dp"
+        android:bottom="800dp">
+        <shape android:shape="oval">
+            <solid android:color="?colorSecondary" />
+        </shape>
+    </item>
+    <item android:top="300dp"
+        android:end="0dp"
+        android:start="800dp"
+        android:bottom="500dp">
+        <shape android:shape="oval">
+            <solid android:color="?colorTertiary" />
+        </shape>
+    </item>
+    <item android:top="200dp"
+        android:bottom="200dp"
+        android:start="200dp"
+        android:end="200dp">
+        <shape android:shape="oval">
+            <solid android:color="?colorPrimary"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/microchip_solid"
+        android:top="400dp"
+        android:bottom="400dp"
+        android:start="400dp"
+        android:end="400dp" />
+
+</layer-list>

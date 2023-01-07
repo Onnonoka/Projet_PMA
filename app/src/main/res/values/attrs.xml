@@ -1,0 +1,8 @@
+
+<resources>
+    <attr name="colorLighter" format="color" />
+    <attr name="colorOnLighter" format="color" />
+    <attr name="colorLighterContainer" format="color" />
+    <attr name="colorOnLighterContainer" format="color" />
+    <attr name="harmonizeLighter" format="boolean" />
+</resources>

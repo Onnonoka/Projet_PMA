@@ -3,4 +3,27 @@
     <string name="Icon_not_load">Icon_not_load</string>
     <string name="server_configuration">Server configuration</string>
     <string name="impact_visualisation">Impact visualisation</string>
+    <string name="cpu">CPU</string>
+    <string name="configScreenTitle">Server configuration</string>
+    <string name="quantity">Quantity</string>
+    <string name="core_units">Core units</string>
+    <string name="tdp">TDP (Watt)</string>
+    <string name="arch">Architecture</string>
+    <string name="new_configuration">New configuration</string>
+    <string name="ram">RAM</string>
+    <string name="ssd">SSD</string>
+    <string name="other">Other</string>
+    <string name="next">Next</string>
+    <string name="previus">Previus</string>
+    <string name="capacity">Capacity (GB)</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="hdd_quantity">HDD quantity</string>
+    <string name="serveur_type">Server type</string>
+    <string name="psu_quantity">PSU quantity</string>
+    <string name="usage">Usage</string>
+    <string name="localisation">Localisation</string>
+    <string name="lifespan">Lifespan (year)</string>
+    <string name="method">Method</string>
+    <string name="average_consumption">Average consumption (W)</string>
+    <string name="continu">Continue</string>
 </resources>
