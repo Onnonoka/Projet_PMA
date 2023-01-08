@@ -3,6 +3,7 @@ package com.example.projet_pma;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,15 +108,10 @@ public class CPUConfigFragment extends Fragment {
                 // do nothing
             }
         });
-        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Configuration.getInstance().set_architecture(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // do nothing
             }
         });
 

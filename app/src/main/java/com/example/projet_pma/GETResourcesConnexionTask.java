@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class GetResourcesTask extends GetTask implements Callable<List<String>> {
+public class GETResourcesConnexionTask extends URLConnexionTask implements Callable<List<String>> {
 
-    private static final String TAG = GetResourcesTask.class.getName();
+    private static final String TAG = GETResourcesConnexionTask.class.getName();
 
-    public GetResourcesTask(String endpoint) {
+    public GETResourcesConnexionTask(String endpoint) {
         super(endpoint);
     }
 
     @Override
     public List<String> call() throws Exception {
-        openConnexion();
+        openConnexion("GET");
 
         String inputStreamString = getInputStreamString();
         Log.i(TAG, inputStreamString);

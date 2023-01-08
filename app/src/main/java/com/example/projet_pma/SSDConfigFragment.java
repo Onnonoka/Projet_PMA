@@ -81,15 +81,10 @@ public class SSDConfigFragment extends Fragment {
                 // do nothing
             }
         });
-        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Configuration.getInstance().set_manufacturerSSD(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // do nothing
             }
         });
 

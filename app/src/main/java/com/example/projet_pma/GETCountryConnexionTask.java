@@ -2,7 +2,6 @@ package com.example.projet_pma;
 
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,17 +10,17 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-public class GetCountryTask extends GetTask implements Callable<Map<String, String>> {
+public class GETCountryConnexionTask extends URLConnexionTask implements Callable<Map<String, String>> {
 
-    private static final String TAG = GetCountryTask.class.getName();
+    private static final String TAG = GETCountryConnexionTask.class.getName();
 
-    public GetCountryTask() {
-        super("/country_code");
+    public GETCountryConnexionTask() {
+        super("/utils/country_code");
     }
 
     @Override
     public Map<String, String> call() throws Exception {
-        openConnexion();
+        openConnexion("GET");
 
         String inputStreamString = getInputStreamString();
         Log.i(TAG, inputStreamString);

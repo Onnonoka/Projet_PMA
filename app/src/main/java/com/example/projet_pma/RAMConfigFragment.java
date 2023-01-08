@@ -39,7 +39,7 @@ public class RAMConfigFragment extends Fragment {
         if (Configuration.getInstance().get_quantityRAM() != -1) {
             quantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantityRAM()));
         }
-        if (Configuration.getInstance().get_coreUnits() != -1) {
+        if (Configuration.getInstance().get_capacityRAM() != -1) {
             capacityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_capacityRAM()));
         }
         if (!Configuration.getInstance().get_manufacturerRAM().equals("")) {
@@ -81,15 +81,10 @@ public class RAMConfigFragment extends Fragment {
                 // do nothing
             }
         });
-        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Configuration.getInstance().set_manufacturerRAM(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // do nothing
             }
         });
 

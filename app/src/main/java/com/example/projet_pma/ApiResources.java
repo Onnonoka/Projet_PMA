@@ -24,25 +24,25 @@ public class ApiResources {
         _ctx = ctx;
 
         TaskRunner taskRunner = new TaskRunner();
-        taskRunner.executeAsync(new GetResourcesTask("/cpu_family"), new TaskRunner.Callback<List<String>>() {
+        taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/cpu_family"), new TaskRunner.Callback<List<String>>() {
             @Override
             public void onComplete(List<String> result) {
                 set_CPUFamilyList(result);
             }
         });
-        taskRunner.executeAsync(new GetResourcesTask("/ram_manufacturer"), new TaskRunner.Callback<List<String>>() {
+        taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/ram_manufacturer"), new TaskRunner.Callback<List<String>>() {
             @Override
             public void onComplete(List<String> result) {
                 set_RAMManufacturerList(result);
             }
         });
-        taskRunner.executeAsync(new GetResourcesTask("/ssd_manufacturer"), new TaskRunner.Callback<List<String>>() {
+        taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/ssd_manufacturer"), new TaskRunner.Callback<List<String>>() {
             @Override
             public void onComplete(List<String> result) {
                 set_SSDManufacturerList(result);
             }
         });
-        taskRunner.executeAsync(new GetResourcesTask("/case_type"), new TaskRunner.Callback<List<String>>() {
+        taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/case_type"), new TaskRunner.Callback<List<String>>() {
             @Override
             public void onComplete(List<String> result) {
                 set_caseTypeList(result);
@@ -50,7 +50,7 @@ public class ApiResources {
         });
         String[] methodItem = _ctx.getResources().getStringArray(R.array.method);
         set_methodList(Arrays.asList(methodItem));
-        taskRunner.executeAsync(new GetCountryTask(), new TaskRunner.Callback<Map<String, String>>() {
+        taskRunner.executeAsync(new GETCountryConnexionTask(), new TaskRunner.Callback<Map<String, String>>() {
             @Override
             public void onComplete(Map<String, String> result) {
                 set_countryCodeList(result);

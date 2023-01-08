@@ -4,27 +4,34 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class GetTask {
+public class URLConnexionTask {
 
-    private static final String TAG = GetTask.class.getName();
+    private static final String TAG = URLConnexionTask.class.getName();
 
-    private static final String BASE_URL = "https://uppa.api.boavizta.org/v1/utils";
+    private static final String BASE_URL = "https://uppa.api.boavizta.org/v1";
     private String _endpoint = "";
 
     private HttpURLConnection _urlConnection;
 
-    public GetTask(String endpoint) {
+    public URLConnexionTask(String endpoint) {
         _endpoint = endpoint;
     }
 
-    protected void openConnexion() throws Exception {
+    protected void openConnexion(String method) throws Exception {
         URL url = new URL(BASE_URL + _endpoint);
         _urlConnection = (HttpURLConnection) url.openConnection();
-        _urlConnection.setRequestMethod("GET");
+        _urlConnection.setRequestMethod(method);
+        if (method.equals("POST")) {
+            _urlConnection.setDoOutput(true);
+            _urlConnection.setConnectTimeout(15000);
+            _urlConnection.setRequestProperty("Content-Type", "application/json");
+            _urlConnection.connect();
+        }
     }
 
     protected String getInputStreamString() {
@@ -46,6 +53,18 @@ public class GetTask {
             }
         }
         return "";
+    }
+
+    protected void writeOutputStream(String query) {
+        try {
+            byte[] outputBytes = query.getBytes(StandardCharsets.UTF_8);
+            OutputStream os = _urlConnection.getOutputStream();
+            os.write(outputBytes);
+            os.flush();
+            os.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

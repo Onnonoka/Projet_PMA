@@ -74,15 +74,10 @@ public class UsageConfigFragment extends Fragment {
                 // do nothing
             }
         });
-        dropdownLocalisation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dropdownLocalisation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Configuration.getInstance().set_localisation(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // do nothing
             }
         });
         avgConsInput.getEditText().addTextChangedListener(new TextWatcher() {
@@ -103,15 +98,10 @@ public class UsageConfigFragment extends Fragment {
             }
         });
 
-        dropdownMethod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        dropdownMethod.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Configuration.getInstance().set_methode(parent.getItemAtPosition(position).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // do nothing
             }
         });
 
