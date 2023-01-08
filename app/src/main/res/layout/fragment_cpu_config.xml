@@ -32,6 +32,7 @@
         android:layout_marginTop="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/quantityEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -40,7 +41,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/CoreUnitsTextField"
+        android:id="@+id/coreUnitsTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/core_units"
@@ -51,6 +52,7 @@
         android:layout_marginTop="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/coreUnitsEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -65,11 +67,12 @@
         android:hint="@string/tdp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/CoreUnitsTextField"
+        app:layout_constraintTop_toBottomOf="@id/coreUnitsTextField"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tdpEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -86,12 +89,15 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintTop_toBottomOf="@id/tdpTextField"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:labelFor="@id/archAutoCompleteTextView">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
+            android:id="@+id/archAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="none"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

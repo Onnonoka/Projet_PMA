@@ -21,7 +21,7 @@
         android:textColor="?colorSecondary"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/quantityTextField"
+        android:id="@+id/localisationTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/localisation"
@@ -29,24 +29,27 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintTop_toBottomOf="@id/subTitle"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:labelFor="@id/localisationAutoCompleteTextView">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
+            android:id="@+id/localisationAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="none"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/CoreUnitsTextField"
+        android:id="@+id/lifespanTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/lifespan"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/quantityTextField"
+        app:layout_constraintTop_toBottomOf="@id/localisationTextField"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp">
 
@@ -59,32 +62,36 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tdpTextField"
+        android:id="@+id/methodTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/method"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/CoreUnitsTextField"
+        app:layout_constraintTop_toBottomOf="@id/lifespanTextField"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:labelFor="@id/methodAutoCompleteTextView">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
+            android:id="@+id/methodAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="none"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ArchTextField"
+        android:id="@+id/avgConsTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/average_consumption"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tdpTextField"
+        app:layout_constraintTop_toBottomOf="@id/methodTextField"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp">
 

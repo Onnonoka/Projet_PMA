@@ -21,7 +21,7 @@
         android:textColor="?colorSecondary"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/quantityTextField"
+        android:id="@+id/hddQuantityTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hdd_quantity"
@@ -40,32 +40,35 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/CoreUnitsTextField"
+        android:id="@+id/serverTypeTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/serveur_type"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/quantityTextField"
+        app:layout_constraintTop_toBottomOf="@id/hddQuantityTextField"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:labelFor="@id/serverTypeAutoCompleteTextView">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <AutoCompleteTextView
+            android:id="@+id/serverTypeAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="none"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tdpTextField"
+        android:id="@+id/psuQuantityTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/psu_quantity"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/CoreUnitsTextField"
+        app:layout_constraintTop_toBottomOf="@id/serverTypeTextField"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp">
 

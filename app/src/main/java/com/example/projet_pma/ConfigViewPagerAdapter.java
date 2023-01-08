@@ -17,17 +17,17 @@ public class ConfigViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new CustomFragment(R.layout.fragment_cpu_config);
+                return new CPUConfigFragment();
             case 1:
-                return new CustomFragment(R.layout.fragment_ram_config);
+                return new RAMConfigFragment();
             case 2:
-                return new CustomFragment(R.layout.fragment_ssd_config);
+                return new SSDConfigFragment();
             case 3:
-                return new CustomFragment(R.layout.fragment_other_config);
+                return new OtherConfigFragment();
             case 4:
-                return new CustomFragment(R.layout.fragment_usage_config);
+                return new UsageConfigFragment();
             default:
-                return new CustomFragment(R.layout.fragment_cpu_config);
+                return new CPUConfigFragment();
         }
     }
 

@@ -1,9 +1,12 @@
 package com.example.projet_pma;
 
 
-public class Configuration {
+import android.app.Application;
+
+public class Configuration extends Application {
 
     private static final String TAG = "Configuration";
+    private static Configuration _self;
 
     // CPU configuration
     private int _quantityCPU = 0;
@@ -32,8 +35,14 @@ public class Configuration {
     private String _methode = "";
     private int _avgConsumption = 0;
 
-    public Configuration() {
+    @Override
+    public final void onCreate() {
+        super.onCreate();
+        _self = this;
+    }
 
+    public static Configuration getInstance() {
+        return _self;
     }
 
     public int get_quantityCPU() {
