@@ -21,6 +21,8 @@ import java.util.List;
 
 public class OtherConfigFragment extends Fragment {
 
+    private static final String TAG = OtherConfigFragment.class.getName();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,10 +30,7 @@ public class OtherConfigFragment extends Fragment {
 
         AutoCompleteTextView dropdown = v.findViewById(R.id.serverTypeAutoCompleteTextView);
 
-        String[] serverTypeItem = getResources().getStringArray(R.array.serverType);
-        List<String> serverTypeList = Arrays.asList(serverTypeItem);
-
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, serverTypeList);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_caseTypeList());
         dropdown.setAdapter(adapter);
 
         TextInputLayout hddQuantityInput = v.findViewById(R.id.hddQuantityTextField);

@@ -10,7 +10,8 @@ import android.widget.Toast;
 
 public class HomeButton implements View.OnClickListener {
 
-    private static String TAG = "HomeButton";
+    private static final String TAG = HomeButton.class.getName();
+
     private Button _btn;
     private Context _ctx;
 

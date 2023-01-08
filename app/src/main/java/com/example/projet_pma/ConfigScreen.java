@@ -6,11 +6,14 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class ConfigScreen extends AppCompatActivity {
+
+    private static final String TAG = ConfigScreen.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +22,9 @@ public class ConfigScreen extends AppCompatActivity {
 
         ViewPager2 viewPager2 = findViewById(R.id.configViewer);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
+
+        Button btn = findViewById(R.id.analyzeButton);
+        AnalyzeButton analyzeButton = new AnalyzeButton(this, btn);
 
         ConfigViewPagerAdapter adapter = new ConfigViewPagerAdapter(this);
         viewPager2.setAdapter(adapter);

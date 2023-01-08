@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ConfigViewPagerAdapter extends FragmentStateAdapter {
 
+    private static final String TAG = ConfigViewPagerAdapter.class.getName();
 
     public ConfigViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);

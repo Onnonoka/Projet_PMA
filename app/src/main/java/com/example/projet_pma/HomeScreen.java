@@ -3,9 +3,15 @@ package com.example.projet_pma;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class HomeScreen extends AppCompatActivity {
+    private static final String TAG = HomeScreen.class.getName();
 
     private HomeButton _homeButton;
 

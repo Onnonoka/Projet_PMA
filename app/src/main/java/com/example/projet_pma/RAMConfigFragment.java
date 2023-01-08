@@ -21,6 +21,8 @@ import java.util.List;
 
 public class RAMConfigFragment extends Fragment {
 
+    private static final String TAG = RAMConfigFragment.class.getName();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,10 +30,7 @@ public class RAMConfigFragment extends Fragment {
 
         AutoCompleteTextView dropdown = v.findViewById(R.id.manufacturerAutoCompleteTextView);
 
-        String[] manufacturerItem = getResources().getStringArray(R.array.RAMManufacturer);
-        List<String> manufacturerList = Arrays.asList(manufacturerItem);
-
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, manufacturerList);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_RAMManufacturerList());
         dropdown.setAdapter(adapter);
 
         TextInputLayout quantityInput = v.findViewById(R.id.quantityTextField);

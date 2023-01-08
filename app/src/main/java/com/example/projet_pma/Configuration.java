@@ -3,10 +3,15 @@ package com.example.projet_pma;
 
 import android.app.Application;
 
+import java.util.List;
+import java.util.Map;
+
 public class Configuration extends Application {
 
-    private static final String TAG = "Configuration";
+    private static final String TAG = Configuration.class.getName();
     private static Configuration _self;
+
+    private ApiResources _APIResources;
 
     // CPU configuration
     private int _quantityCPU = -1;
@@ -39,10 +44,15 @@ public class Configuration extends Application {
     public final void onCreate() {
         super.onCreate();
         _self = this;
+        _APIResources = new ApiResources(this);
     }
 
     public static Configuration getInstance() {
         return _self;
+    }
+
+    public ApiResources get_APIResources() {
+        return _APIResources;
     }
 
     public int get_quantityCPU() {

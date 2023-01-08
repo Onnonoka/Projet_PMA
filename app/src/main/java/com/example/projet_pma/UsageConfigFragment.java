@@ -21,6 +21,8 @@ import java.util.List;
 
 public class UsageConfigFragment extends Fragment {
 
+    private static final String TAG = UsageConfigFragment.class.getName();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,14 +31,10 @@ public class UsageConfigFragment extends Fragment {
         AutoCompleteTextView dropdownLocalisation = v.findViewById(R.id.localisationAutoCompleteTextView);
         AutoCompleteTextView dropdownMethod = v.findViewById(R.id.methodAutoCompleteTextView);
 
-        String[] localisationItem = getResources().getStringArray(R.array.localisation);
-        List<String> localisationList = Arrays.asList(localisationItem);
-
-        String[] methodItem = getResources().getStringArray(R.array.method);
-        List<String> methodList = Arrays.asList(methodItem);
-
-        ArrayAdapter localisationAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, localisationList);
-        ArrayAdapter methodAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, methodList);
+        ArrayAdapter localisationAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance()
+                .get_APIResources().get_countryCodeList().keySet().toArray());
+        ArrayAdapter methodAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance()
+                .get_APIResources().get_methodList());
 
         dropdownLocalisation.setAdapter(localisationAdapter);
         dropdownMethod.setAdapter(methodAdapter);

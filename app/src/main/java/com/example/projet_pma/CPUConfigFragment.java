@@ -3,27 +3,23 @@ package com.example.projet_pma;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class CPUConfigFragment extends Fragment {
+
+    private static final String TAG = CPUConfigFragment.class.getName();
 
     @Nullable
     @Override
@@ -35,12 +31,8 @@ public class CPUConfigFragment extends Fragment {
         // Set the array elements to the dropdown
         AutoCompleteTextView dropdown = v.findViewById(R.id.archAutoCompleteTextView);
 
-        // Get the arrayList from resources
-        String[] archItem = getResources().getStringArray(R.array.arch);
-        List<String> archList = Arrays.asList(archItem);
-
         // Bind the element to an arrayAdapter and the dropdown
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, archList);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_CPUFamilyList());
         dropdown.setAdapter(adapter);
 
         // Set default input text value

@@ -21,6 +21,8 @@ import java.util.List;
 
 public class SSDConfigFragment extends Fragment {
 
+    private static final String TAG = SSDConfigFragment.class.getName();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,10 +30,7 @@ public class SSDConfigFragment extends Fragment {
 
         AutoCompleteTextView dropdown = v.findViewById(R.id.manufacturerAutoCompleteTextView);
 
-        String[] manufacturerItem = getResources().getStringArray(R.array.SSDManufacturer);
-        List<String> manufacturerList = Arrays.asList(manufacturerItem);
-
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, manufacturerList);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_SSDManufacturerList());
         dropdown.setAdapter(adapter);
 
         TextInputLayout quantityInput = v.findViewById(R.id.quantityTextField);
