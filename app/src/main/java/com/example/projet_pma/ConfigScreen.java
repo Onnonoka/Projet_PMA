@@ -27,7 +27,7 @@ public class ConfigScreen extends AppCompatActivity {
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-
+                        // need empty fonction for doing nothing special
                     }
                 }).attach();
     }

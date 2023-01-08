@@ -48,13 +48,13 @@ public class CPUConfigFragment extends Fragment {
         TextInputLayout coreUnitsInput = v.findViewById(R.id.coreUnitsTextField);
         TextInputLayout tdpInput = v.findViewById(R.id.tdpTextField);
 
-        if (Configuration.getInstance().get_quantityCPU() != 0) {
+        if (Configuration.getInstance().get_quantityCPU() != -1) {
             quantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantityCPU()));
         }
-        if (Configuration.getInstance().get_coreUnits() != 0) {
+        if (Configuration.getInstance().get_coreUnits() != -1) {
             coreUnitsInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_coreUnits()));
         }
-        if (Configuration.getInstance().get_tdp() != 0) {
+        if (Configuration.getInstance().get_tdp() != -1) {
             tdpInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_tdp()));
         }
         if (!Configuration.getInstance().get_architecture().equals("")) {

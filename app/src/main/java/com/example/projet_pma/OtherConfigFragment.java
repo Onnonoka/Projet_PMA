@@ -37,13 +37,13 @@ public class OtherConfigFragment extends Fragment {
         TextInputLayout hddQuantityInput = v.findViewById(R.id.hddQuantityTextField);
         TextInputLayout psuQuantityInput = v.findViewById(R.id.psuQuantityTextField);
 
-        if (Configuration.getInstance().get_quantityHDD() != 0) {
+        if (Configuration.getInstance().get_quantityHDD() != -1) {
             hddQuantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantityHDD()));
         }
         if (!Configuration.getInstance().get_serverType().equals("")) {
             dropdown.setText(Configuration.getInstance().get_serverType());
         }
-        if (Configuration.getInstance().get_quantityPSU() != 0) {
+        if (Configuration.getInstance().get_quantityPSU() != -1) {
             psuQuantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantityPSU()));
         }
 

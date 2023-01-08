@@ -44,13 +44,16 @@ public class UsageConfigFragment extends Fragment {
         TextInputLayout lifespanInput = v.findViewById(R.id.lifespanTextField);
         TextInputLayout avgConsInput = v.findViewById(R.id.avgConsTextField);
 
-        if (Configuration.getInstance().get_lifespan() != 0) {
-            lifespanInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_lifespan()));
-        }
         if (!Configuration.getInstance().get_localisation().equals("")) {
             dropdownLocalisation.setText(Configuration.getInstance().get_serverType());
         }
-        if (Configuration.getInstance().get_avgConsumption() != 0) {
+        if (Configuration.getInstance().get_lifespan() != -1) {
+            lifespanInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_lifespan()));
+        }
+        if (!Configuration.getInstance().get_methode().equals("")) {
+            dropdownLocalisation.setText(Configuration.getInstance().get_methode());
+        }
+        if (Configuration.getInstance().get_avgConsumption() != -1) {
             avgConsInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_avgConsumption()));
         }
 

@@ -37,10 +37,10 @@ public class RAMConfigFragment extends Fragment {
         TextInputLayout quantityInput = v.findViewById(R.id.quantityTextField);
         TextInputLayout capacityInput = v.findViewById(R.id.capacityTextField);
 
-        if (Configuration.getInstance().get_quantityRAM() != 0) {
+        if (Configuration.getInstance().get_quantityRAM() != -1) {
             quantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantityRAM()));
         }
-        if (Configuration.getInstance().get_coreUnits() != 0) {
+        if (Configuration.getInstance().get_coreUnits() != -1) {
             capacityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_capacityRAM()));
         }
         if (!Configuration.getInstance().get_manufacturerRAM().equals("")) {

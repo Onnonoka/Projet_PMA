@@ -37,10 +37,10 @@ public class SSDConfigFragment extends Fragment {
         TextInputLayout quantityInput = v.findViewById(R.id.quantityTextField);
         TextInputLayout capacityInput = v.findViewById(R.id.capacityTextField);
 
-        if (Configuration.getInstance().get_quantitySSD() != 0) {
+        if (Configuration.getInstance().get_quantitySSD() != -1) {
             quantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantitySSD()));
         }
-        if (Configuration.getInstance().get_capacitySSD() != 0) {
+        if (Configuration.getInstance().get_capacitySSD() != -1) {
             capacityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_capacitySSD()));
         }
         if (!Configuration.getInstance().get_manufacturerSSD().equals("")) {

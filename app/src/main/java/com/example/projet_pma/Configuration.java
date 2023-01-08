@@ -9,31 +9,31 @@ public class Configuration extends Application {
     private static Configuration _self;
 
     // CPU configuration
-    private int _quantityCPU = 0;
-    private int _coreUnits = 0;
-    private int _tdp = 0;
+    private int _quantityCPU = -1;
+    private int _coreUnits = -1;
+    private int _tdp = -1;
     private String _architecture = "";
 
     // RAM configuration
-    private int _quantityRAM = 0;
-    private int _capacityRAM = 0;
+    private int _quantityRAM = -1;
+    private int _capacityRAM = -1;
     private String _manufacturerRAM = "";
 
     // SSD configuration
-    private int _quantitySSD = 0;
-    private int _capacitySSD = 0;
+    private int _quantitySSD = -1;
+    private int _capacitySSD = -1;
     private String _manufacturerSSD = "";
 
     // Other configuration
-    private int _quantityHDD = 0;
+    private int _quantityHDD = -1;
     private String _serverType = "";
-    private int _quantityPSU = 0;
+    private int _quantityPSU = -1;
 
     // Configuration usage
     private String _localisation = "";
-    private int _lifespan = 0;
+    private int _lifespan = -1;
     private String _methode = "";
-    private int _avgConsumption = 0;
+    private int _avgConsumption = -1;
 
     @Override
     public final void onCreate() {
