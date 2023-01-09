@@ -1,6 +1,7 @@
 package com.example.projet_pma;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,9 @@ public class AnalyzeButton implements View.OnClickListener {
         taskRunner.executeAsync(new POSTVisualisationConnexionTask(), new TaskRunner.Callback<JSONObject>() {
             @Override
             public void onComplete(JSONObject result) {
+                // Do screen change
+                Intent intent = new Intent(_ctx, ImpactVisualisationScreen.class);
+                _ctx.startActivity(intent);
                 Log.i(TAG, "TASK Complete");
             }
         });

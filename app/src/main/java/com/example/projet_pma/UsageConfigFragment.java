@@ -18,6 +18,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class UsageConfigFragment extends Fragment {
 
@@ -31,8 +32,9 @@ public class UsageConfigFragment extends Fragment {
         AutoCompleteTextView dropdownLocalisation = v.findViewById(R.id.localisationAutoCompleteTextView);
         AutoCompleteTextView dropdownMethod = v.findViewById(R.id.methodAutoCompleteTextView);
 
+
         ArrayAdapter localisationAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance()
-                .get_APIResources().get_countryCodeList().keySet().toArray());
+                .get_APIResources().get_countryFullList());
         ArrayAdapter methodAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance()
                 .get_APIResources().get_methodList());
 

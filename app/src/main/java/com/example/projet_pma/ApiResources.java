@@ -2,9 +2,13 @@ package com.example.projet_pma;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ApiResources {
 
@@ -27,29 +31,35 @@ public class ApiResources {
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/cpu_family"), new TaskRunner.Callback<List<String>>() {
             @Override
             public void onComplete(List<String> result) {
+                Collections.sort(result);
                 set_CPUFamilyList(result);
             }
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/ram_manufacturer"), new TaskRunner.Callback<List<String>>() {
             @Override
             public void onComplete(List<String> result) {
+                Collections.sort(result);
                 set_RAMManufacturerList(result);
             }
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/ssd_manufacturer"), new TaskRunner.Callback<List<String>>() {
             @Override
             public void onComplete(List<String> result) {
+                Collections.sort(result);
                 set_SSDManufacturerList(result);
             }
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/case_type"), new TaskRunner.Callback<List<String>>() {
             @Override
             public void onComplete(List<String> result) {
+                Collections.sort(result);
                 set_caseTypeList(result);
             }
         });
         String[] methodItem = _ctx.getResources().getStringArray(R.array.method);
-        set_methodList(Arrays.asList(methodItem));
+        List methodList = Arrays.asList(methodItem);
+        Collections.sort(methodList);
+        set_methodList(methodList);
         taskRunner.executeAsync(new GETCountryConnexionTask(), new TaskRunner.Callback<Map<String, String>>() {
             @Override
             public void onComplete(Map<String, String> result) {
@@ -98,7 +108,20 @@ public class ApiResources {
         this._methodList = _methodList;
     }
 
-    public Map<String, String> get_countryCodeList() {
+    public List<String> get_countryFullList() {
+        Set countryCodeSet = _countryCodeList.keySet();
+        String[] countryCodeList = (String[]) countryCodeSet.toArray(new String[countryCodeSet.size()]);
+        Arrays.sort(countryCodeList);
+        return Arrays.asList(countryCodeList);
+    }
+
+    public List<String> get_countryCodeList() {
+        ArrayList<String> countryFullList = new ArrayList<>(_countryCodeList.values());
+        Collections.sort(countryFullList);
+        return countryFullList;
+    }
+
+    public Map<String, String> get_countryMap() {
         return _countryCodeList;
     }
 

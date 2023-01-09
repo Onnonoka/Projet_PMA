@@ -20,6 +20,7 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
         openConnexion("POST");
 
         JSONObject jsonMessage = buildJSON();
+        assert jsonMessage != null;
         Log.i(TAG, jsonMessage.toString());
         writeOutputStream(jsonMessage.toString());
 
@@ -46,6 +47,7 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
             modelJsonObject.put("type", Configuration.getInstance().get_serverType());
             jsonObject.put("model", modelJsonObject);
 
+            cpuJsonObject.put("tdp", Configuration.getInstance().get_tdp());
             cpuJsonObject.put("core_units", Configuration.getInstance().get_coreUnits());
             cpuJsonObject.put("units", Configuration.getInstance().get_quantityCPU());
             cpuJsonObject.put("family", Configuration.getInstance().get_architecture());
@@ -72,12 +74,11 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
             configJsonObject.put("disk", diskJsonArray);
 
             powerUnitJsonObject.put("units", Configuration.getInstance().get_quantityPSU());
-            powerUnitJsonObject.put("unit_weight", 4);
             configJsonObject.put("power_supply", powerUnitJsonObject);
             jsonObject.put("configuration", configJsonObject);
 
             usageJsonObject.put("years_use_time", Configuration.getInstance().get_lifespan());
-            String locationCode = Configuration.getInstance().get_APIResources().get_countryCodeList().get(
+            String locationCode = Configuration.getInstance().get_APIResources().get_countryMap().get(
                     Configuration.getInstance().get_localisation()
             );
             usageJsonObject.put("usage_location", locationCode);
