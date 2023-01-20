@@ -10,6 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        // url for the MP Android Chart
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "Projet_PMA"

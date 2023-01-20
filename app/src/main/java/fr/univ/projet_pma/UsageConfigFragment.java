@@ -1,4 +1,5 @@
-package com.example.projet_pma;
+package fr.univ.projet_pma;
+
 
 import android.os.Bundle;
 import android.text.Editable;

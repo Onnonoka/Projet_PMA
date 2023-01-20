@@ -1,4 +1,5 @@
-package com.example.projet_pma;
+package fr.univ.projet_pma;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 

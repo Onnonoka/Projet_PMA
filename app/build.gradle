@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.projet_pma'
+    namespace 'fr.univ.projet_pma'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.projet_pma"
+        applicationId "fr.univ.projet_pma"
         minSdk 26
         targetSdk 33
         versionCode 1
@@ -54,4 +54,7 @@ dependencies {
     // Material design import
     implementation "androidx.compose.material3:material3:1.0.0-beta02"
     implementation "androidx.compose.material3:material3-window-size-class:1.0.0-beta02"
+
+    // MPAndroidChart import
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

@@ -1,4 +1,5 @@
-package com.example.projet_pma;
+package fr.univ.projet_pma;
+
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

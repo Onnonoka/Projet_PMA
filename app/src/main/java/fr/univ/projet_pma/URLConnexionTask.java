@@ -1,4 +1,4 @@
-package com.example.projet_pma;
+package fr.univ.projet_pma;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
