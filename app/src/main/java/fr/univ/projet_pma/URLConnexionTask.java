@@ -28,7 +28,7 @@ public class URLConnexionTask {
         _urlConnection.setRequestMethod(method);
         if (method.equals("POST")) {
             _urlConnection.setDoOutput(true);
-            _urlConnection.setConnectTimeout(15000);
+            _urlConnection.setConnectTimeout(1500);
             _urlConnection.setRequestProperty("Content-Type", "application/json");
             _urlConnection.connect();
         }

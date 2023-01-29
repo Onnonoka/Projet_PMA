@@ -17,20 +17,25 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
     }
 
     @Override
-    public JSONObject call() throws Exception {
-        openConnexion("POST");
+    public JSONObject call() {
+        try {
+            openConnexion("POST");
 
-        JSONObject jsonMessage = buildJSON();
-        assert jsonMessage != null;
-        Log.i(TAG, jsonMessage.toString());
-        writeOutputStream(jsonMessage.toString());
+            JSONObject jsonMessage = buildJSON();
+            assert jsonMessage != null;
+            Log.i(TAG, jsonMessage.toString());
+            writeOutputStream(jsonMessage.toString());
 
-        String response = getInputStreamString();
+            String response = getInputStreamString();
 
-        Log.i(TAG, response);
-        JSONObject jsonResponse = new JSONObject(response);
+            Log.i(TAG, response);
+            JSONObject jsonResponse = new JSONObject(response);
 
-        return jsonResponse;
+            return jsonResponse;
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     private JSONObject buildJSON() {

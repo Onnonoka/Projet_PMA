@@ -27,6 +27,9 @@ public class ApiResources {
 
     public ApiResources(Context ctx) {
         _ctx = ctx;
+    }
+
+    public void update() {
 
         TaskRunner taskRunner = new TaskRunner();
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/cpu_family"), new TaskRunner.Callback<List<String>>() {

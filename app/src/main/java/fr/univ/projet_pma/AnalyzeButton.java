@@ -26,16 +26,19 @@ public class AnalyzeButton implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(_ctx,"TEST!",Toast.LENGTH_SHORT).show();
         TaskRunner taskRunner = new TaskRunner();
         taskRunner.executeAsync(new POSTVisualisationConnexionTask(), new TaskRunner.Callback<JSONObject>() {
             @Override
             public void onComplete(JSONObject result) {
                 // Do screen change
-                Intent intent = new Intent(_ctx, AnalyseScreen.class);
-                intent.putExtra("data", result.toString());
-                _ctx.startActivity(intent);
-                Log.i(TAG, "TASK Complete");
+                if (result == null) {
+                    Toast.makeText(_ctx,"An error has occurred!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(_ctx, AnalyseScreen.class);
+                    intent.putExtra("data", result.toString());
+                    _ctx.startActivity(intent);
+                    Log.i(TAG, "TASK Complete");
+                }
             }
         });
     }
