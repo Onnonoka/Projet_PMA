@@ -28,8 +28,9 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
         String response = getInputStreamString();
 
         Log.i(TAG, response);
+        JSONObject jsonResponse = new JSONObject(response);
 
-        return null;
+        return jsonResponse;
     }
 
     private JSONObject buildJSON() {

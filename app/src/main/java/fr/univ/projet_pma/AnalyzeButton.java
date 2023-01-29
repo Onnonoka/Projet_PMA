@@ -33,6 +33,7 @@ public class AnalyzeButton implements View.OnClickListener {
             public void onComplete(JSONObject result) {
                 // Do screen change
                 Intent intent = new Intent(_ctx, AnalyseScreen.class);
+                intent.putExtra("data", result.toString());
                 _ctx.startActivity(intent);
                 Log.i(TAG, "TASK Complete");
             }
