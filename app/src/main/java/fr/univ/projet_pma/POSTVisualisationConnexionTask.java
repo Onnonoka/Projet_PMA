@@ -13,7 +13,7 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
     private static final String TAG = POSTVisualisationConnexionTask.class.getName();
 
     public POSTVisualisationConnexionTask() {
-        super("/server/?verbose=false");
+        super("/server/?verbose=true");
     }
 
     @Override

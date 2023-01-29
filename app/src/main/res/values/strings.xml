@@ -23,7 +23,6 @@
     <string name="usage">Usage</string>
     <string name="localisation">Localisation</string>
     <string name="lifespan">Lifespan (year)</string>
-    <string name="method">Method</string>
     <string name="average_consumption">Average consumption (W)</string>
     <string name="complete">Complete</string>
 </resources>

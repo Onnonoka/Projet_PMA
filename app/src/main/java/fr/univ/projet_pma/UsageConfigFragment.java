@@ -31,16 +31,12 @@ public class UsageConfigFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_usage_config, container, false);
 
         AutoCompleteTextView dropdownLocalisation = v.findViewById(R.id.localisationAutoCompleteTextView);
-        AutoCompleteTextView dropdownMethod = v.findViewById(R.id.methodAutoCompleteTextView);
 
 
         ArrayAdapter localisationAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance()
                 .get_APIResources().get_countryFullList());
-        ArrayAdapter methodAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance()
-                .get_APIResources().get_methodList());
 
         dropdownLocalisation.setAdapter(localisationAdapter);
-        dropdownMethod.setAdapter(methodAdapter);
 
         TextInputLayout lifespanInput = v.findViewById(R.id.lifespanTextField);
         TextInputLayout avgConsInput = v.findViewById(R.id.avgConsTextField);
@@ -50,9 +46,6 @@ public class UsageConfigFragment extends Fragment {
         }
         if (Configuration.getInstance().get_lifespan() != -1) {
             lifespanInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_lifespan()));
-        }
-        if (!Configuration.getInstance().get_methode().equals("")) {
-            dropdownLocalisation.setText(Configuration.getInstance().get_methode());
         }
         if (Configuration.getInstance().get_avgConsumption() != -1) {
             avgConsInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_avgConsumption()));
@@ -98,13 +91,6 @@ public class UsageConfigFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 // do nothing
-            }
-        });
-
-        dropdownMethod.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Configuration.getInstance().set_methode(parent.getItemAtPosition(position).toString());
             }
         });
 

@@ -22,7 +22,6 @@ public class ApiResources {
     private List<String> _RAMManufacturerList;
     private List<String> _SSDManufacturerList;
     private List<String> _caseTypeList;
-    private List<String> _methodList;
     private Map<String, String> _countryCodeList;
 
     public ApiResources(Context ctx) {
@@ -60,10 +59,6 @@ public class ApiResources {
                 set_caseTypeList(result);
             }
         });
-        String[] methodItem = _ctx.getResources().getStringArray(R.array.method);
-        List methodList = Arrays.asList(methodItem);
-        Collections.sort(methodList);
-        set_methodList(methodList);
         taskRunner.executeAsync(new GETCountryConnexionTask(), new TaskRunner.Callback<Map<String, String>>() {
             @Override
             public void onComplete(Map<String, String> result) {
@@ -102,14 +97,6 @@ public class ApiResources {
 
     public void set_caseTypeList(List<String> _caseTypeList) {
         this._caseTypeList = _caseTypeList;
-    }
-
-    public List<String> get_methodList() {
-        return _methodList;
-    }
-
-    public void set_methodList(List<String> _methodList) {
-        this._methodList = _methodList;
     }
 
     public List<String> get_countryFullList() {
