@@ -32,7 +32,7 @@ public class AnalyzeButton implements View.OnClickListener {
             @Override
             public void onComplete(JSONObject result) {
                 // Do screen change
-                Intent intent = new Intent(_ctx, ImpactVisualisationScreen.class);
+                Intent intent = new Intent(_ctx, AnalyseScreen.class);
                 _ctx.startActivity(intent);
                 Log.i(TAG, "TASK Complete");
             }

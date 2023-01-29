@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".ImpactVisualisationScreen"
+            android:name=".AnalyseScreen"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
