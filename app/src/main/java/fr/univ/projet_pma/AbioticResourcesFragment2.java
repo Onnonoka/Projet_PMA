@@ -1,22 +1,39 @@
 package fr.univ.projet_pma;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.WindowMetrics;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.compose.material3.windowsizeclass.WindowSizeClass;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.color.MaterialColors;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -30,39 +47,104 @@ public class AbioticResourcesFragment2 extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment2_abiotic_resources, container, false);
 
+        String UsageAdp = new String();
+        String ManufacturingAdp = new String();
+        String ManufacturingRAMAdp = new String();
+        String ManufacturingCPUAdp = new String();
+        String ManufacturingSSDAdp = new String();
+        String ManufacturingHDDAdp = new String();
+        String ManufacturingOtherAdp = new String();
+
+        Intent intent = getActivity().getIntent();
+
+        try {
+            Jsonparsing DataJson = new Jsonparsing(new JSONObject(intent.getStringExtra("data")));
+            DataJson.RetrieveValueJson("adp");
+            UsageAdp = DataJson.getUsage();
+            ManufacturingAdp = DataJson.getManufacturing();
+            ManufacturingCPUAdp = DataJson.getManufacturingCPU();
+            ManufacturingRAMAdp = DataJson.getManufacturingRAM();
+            ManufacturingSSDAdp = DataJson.getManufacturingSSD();
+            ManufacturingHDDAdp = DataJson.getManufacturingHDD();
+            ManufacturingOtherAdp = DataJson.getManufacturingOther();
+        } catch (Throwable t){
+            Log.e(TAG, "Could not parse malformed JSON");
+        }
+
+       /* //WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        //Display display = wm.getDefaultDisplay();
+        Display display1 = getActivity().getWindowManager().getDefaultDisplay();
+        int stageWidth = display1.getWidth();
+        int stageHeigh = display1.getHeight();
+
+        //System.out.println("sans doute taille fragment : " + display.getWidth());
+        //System.out.println("sans doute taille fragment : " + display.getHeight());
+        System.out.println("taille fragment : " + stageWidth);
+        System.out.println("taille fragment : " + stageHeigh);
+
+
+        // Gets linearlayout
+        LinearLayout layout = v.findViewById(R.id.AbioticLayout);
+        // Initialize the layout
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 1500);
+        layout.setLayoutParams(params);*/
+
+        TextView Total = (TextView) v.findViewById(R.id.TotaltextAdp);
+        Total.setText(Float.toString(Float.valueOf(UsageAdp) + Float.valueOf(ManufacturingAdp)));
+
         PieChart pieChart = v.findViewById(R.id.AbioticPieChart);
 
+        //Putting data inside array for the piechart
         ArrayList<PieEntry> data = new ArrayList<>();
-        data.add(new PieEntry(30, "Utilisation"));
-        data.add(new PieEntry(400, "Fabrication"));
-        data.add(new PieEntry(200, "Fabrication RAM"));
-        data.add(new PieEntry(100, "Fabrication CPU"));
-        data.add(new PieEntry(230, "Fabrication SSD"));
-        data.add(new PieEntry(450, "Fabrication HHD"));
-        data.add(new PieEntry(170, "Fabrication Autres"));
+        data.add(new PieEntry(Float.valueOf(UsageAdp), "Utilisation"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingAdp), "Fabrication"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingRAMAdp), "Fabrication RAM"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingCPUAdp), "Fabrication CPU"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingSSDAdp), "Fabrication SSD"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingHDDAdp), "Fabrication HHD"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingOtherAdp), "Fabrication Autres"));
 
-        int[] Colors = {Color.rgb(192,0,0), Color.rgb(255,0,0), Color.rgb(255,192,0),Color.rgb(127,127,127), Color.rgb(146,208,80), Color.rgb(0,176,80), Color.rgb(79,129,189)};
+        int[] Colors = {MaterialColors.getColor(v, R.attr.colorPrimary), MaterialColors.getColor(v, R.attr.colorPrimaryContainer), MaterialColors.getColor(v, R.attr.colorSecondary), MaterialColors.getColor(v, R.attr.colorSecondaryContainer), MaterialColors.getColor(v, R.attr.colorTertiary), MaterialColors.getColor(v, R.attr.colorTertiaryContainer), MaterialColors.getColor(v, R.attr.colorOutline)};
         ArrayList<Integer> colors = new ArrayList<Integer>();
         for(int i=0; i <Colors.length ; i++) {
             colors.add(Colors[i]);
         }
 
+        //Set parameters for piechart's inside data
         PieDataSet pieDataSet = new PieDataSet(data,"");
         pieDataSet.setColors(colors);
-        pieDataSet.setValueTextColor(Color.BLACK);
-        pieDataSet.setValueTextSize(10f);
-
+        /*int color = MaterialColors.getColor(v, R.attr.colorLighter);
+        Log.i("col", "couleur prise : " + color);
+        pieDataSet.setColor(color);*/
+        pieDataSet.setDrawValues(false);
         PieData pieData = new PieData(pieDataSet);
 
+        //Set parameters for piechart view
         pieChart.setData(pieData);
         pieChart.setDrawEntryLabels(false);
         pieChart.getDescription().setEnabled(false);
-        pieChart.animate();
-        pieChart.getLegend().setWordWrapEnabled(true);
+        pieChart.setHoleRadius(35);
+        pieChart.setRotationEnabled(false);
+
+        //Set legend data and parameters
+        ArrayList<LegendEntry> EntryLegendData = new ArrayList<>();
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultUtilisation)) + " " + UsageAdp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[0]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufacture)) + " " + ManufacturingAdp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[1]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureRAM)) + " " + ManufacturingRAMAdp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[2]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureCPU)) + " " + ManufacturingCPUAdp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[3]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureSSD)) + " " + ManufacturingSSDAdp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[4]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureHDD)) + " " + ManufacturingHDDAdp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[5]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureOther)) + " " + ManufacturingOtherAdp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[6]));
 
         Legend legend = pieChart.getLegend();
+        legend.setCustom(EntryLegendData);
         legend.setEnabled(true);
-        legend.setDrawInside(false);
+        legend.setWordWrapEnabled(true);
+        legend.setXEntrySpace(14f);
+        legend.setYEntrySpace(4f);
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        legend.setTextColor(MaterialColors.getColor(v, R.attr.colorOnBackground));
 
         return v;
     }

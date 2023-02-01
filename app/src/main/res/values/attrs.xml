@@ -5,4 +5,12 @@
     <attr name="colorLighterContainer" format="color" />
     <attr name="colorOnLighterContainer" format="color" />
     <attr name="harmonizeLighter" format="boolean" />
+    <attr name="colorPrimary" format="color"/>
+    <attr name="colorPrimaryContainer" format="color" />
+    <attr name="colorSecondary" format="color" />
+    <attr name="colorSecondaryContainer" format="color"/>
+    <attr name="colorTertiary" format="color"/>
+    <attr name="colorTertiaryContainer" format="color" />
+    <attr name="colorOutline" format="color"/>
+    <attr name="colorOnBackground" format="color" />
 </resources>

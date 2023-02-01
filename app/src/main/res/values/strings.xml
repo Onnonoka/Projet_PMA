@@ -25,4 +25,14 @@
     <string name="lifespan">Lifespan (year)</string>
     <string name="average_consumption">Average consumption (W)</string>
     <string name="complete">Complete</string>
+    <string name="abioticTitle">Abiotic depletion potential (kgSbeq)</string>
+    <string name="greenhouseTitle">Global Warming Potential (kgCO2eq)</string>
+    <string name="primaryEnergyTitle">Primary Energy (MJ)</string>
+    <string name="resultUtilisation">Usage : </string>
+    <string name="resultManufacture">Manufacturing : </string>
+    <string name="resultManufactureRAM">Manufacturing RAM : </string>
+    <string name="resultManufactureCPU">Manufacturing CPU : </string>
+    <string name="resultManufactureSSD">Manufacturing SSD : </string>
+    <string name="resultManufactureHDD">Manufacturing HDD : </string>
+    <string name="resultManufactureOther">Manufacturing other : </string>
 </resources>

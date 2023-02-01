@@ -1,7 +1,10 @@
 package fr.univ.projet_pma;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -26,6 +29,7 @@ public class AnalyseScreen extends AppCompatActivity {
 
         AnalyseViewPagerAdapter adapter = new AnalyseViewPagerAdapter(this);
         viewPager2.setAdapter(adapter);
+
 
         new TabLayoutMediator(tabLayout, viewPager2,
                 new TabLayoutMediator.TabConfigurationStrategy() {
