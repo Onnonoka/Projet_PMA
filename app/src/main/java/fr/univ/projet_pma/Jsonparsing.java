@@ -44,7 +44,7 @@ public class Jsonparsing {
         JSONObject impact = FullData.getJSONObject("impacts");
         JSONObject type = impact.getJSONObject(t);
         Usage = type.getString("use");
-        Manufacturing = type.getString("manufacture");
+        Manufacturing = Double.toString(Math.abs(type.getDouble("manufacture")));
 
         JSONObject verbose = FullData.getJSONObject("verbose");
         JSONObject CPU = verbose.getJSONObject("CPU-1");

@@ -70,24 +70,12 @@ public class AbioticResourcesFragment2 extends Fragment {
         } catch (Throwable t){
             Log.e(TAG, "Could not parse malformed JSON");
         }
-
-       /* //WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        //Display display = wm.getDefaultDisplay();
         Display display1 = getActivity().getWindowManager().getDefaultDisplay();
         int stageWidth = display1.getWidth();
         int stageHeigh = display1.getHeight();
 
-        //System.out.println("sans doute taille fragment : " + display.getWidth());
-        //System.out.println("sans doute taille fragment : " + display.getHeight());
         System.out.println("taille fragment : " + stageWidth);
         System.out.println("taille fragment : " + stageHeigh);
-
-
-        // Gets linearlayout
-        LinearLayout layout = v.findViewById(R.id.AbioticLayout);
-        // Initialize the layout
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, 1500);
-        layout.setLayoutParams(params);*/
 
         TextView Total = (TextView) v.findViewById(R.id.TotaltextAdp);
         Total.setText(Float.toString(Float.valueOf(UsageAdp) + Float.valueOf(ManufacturingAdp)));
@@ -113,9 +101,6 @@ public class AbioticResourcesFragment2 extends Fragment {
         //Set parameters for piechart's inside data
         PieDataSet pieDataSet = new PieDataSet(data,"");
         pieDataSet.setColors(colors);
-        /*int color = MaterialColors.getColor(v, R.attr.colorLighter);
-        Log.i("col", "couleur prise : " + color);
-        pieDataSet.setColor(color);*/
         pieDataSet.setDrawValues(false);
         PieData pieData = new PieData(pieDataSet);
 

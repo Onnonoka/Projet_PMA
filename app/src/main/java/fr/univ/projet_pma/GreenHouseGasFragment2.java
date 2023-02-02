@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -58,8 +59,7 @@ public class GreenHouseGasFragment2 extends Fragment {
             Log.e(TAG, "Could not parse malformed JSON");
         }
 
-
-        TextView Total = (TextView) v.findViewById(R.id.TotaltextGwp);
+        TextView Total = v.findViewById(R.id.TotaltextGwp);
         Total.setText(Float.toString(Float.valueOf(UsageGwp) + Float.valueOf(ManufacturingGwp)));
 
         PieChart pieChart = v.findViewById(R.id.GwpPieChart);
