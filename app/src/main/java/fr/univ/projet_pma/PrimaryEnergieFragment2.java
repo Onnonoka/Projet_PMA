@@ -32,47 +32,47 @@ public class PrimaryEnergieFragment2 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment2_greenhouse_gas, container, false);
+        View v = inflater.inflate(R.layout.fragment2_primary_energie, container, false);
 
-        String UsageGwp = new String();
-        String ManufacturingGwp = new String();
-        String ManufacturingRAMGwp = new String();
-        String ManufacturingCPUGwp = new String();
-        String ManufacturingSSDGwp = new String();
-        String ManufacturingHDDGwp = new String();
-        String ManufacturingOtherGwp = new String();
+        String UsagePe = new String();
+        String ManufacturingPe = new String();
+        String ManufacturingRAMPe = new String();
+        String ManufacturingCPUPe = new String();
+        String ManufacturingSSDPe = new String();
+        String ManufacturingHDDPe = new String();
+        String ManufacturingOtherPe = new String();
 
         Intent intent = getActivity().getIntent();
 
         try {
             Jsonparsing DataJson = new Jsonparsing(new JSONObject(intent.getStringExtra("data")));
-            DataJson.RetrieveValueJson("Gwp");
-            UsageGwp = DataJson.getUsage();
-            ManufacturingGwp = DataJson.getManufacturing();
-            ManufacturingCPUGwp = DataJson.getManufacturingCPU();
-            ManufacturingRAMGwp = DataJson.getManufacturingRAM();
-            ManufacturingSSDGwp = DataJson.getManufacturingSSD();
-            ManufacturingHDDGwp = DataJson.getManufacturingHDD();
-            ManufacturingOtherGwp = DataJson.getManufacturingOther();
+            DataJson.RetrieveValueJson("pe");
+            UsagePe = DataJson.getUsage();
+            ManufacturingPe = DataJson.getManufacturing();
+            ManufacturingCPUPe = DataJson.getManufacturingCPU();
+            ManufacturingRAMPe = DataJson.getManufacturingRAM();
+            ManufacturingSSDPe = DataJson.getManufacturingSSD();
+            ManufacturingHDDPe = DataJson.getManufacturingHDD();
+            ManufacturingOtherPe = DataJson.getManufacturingOther();
         } catch (Throwable t){
             Log.e(TAG, "Could not parse malformed JSON");
         }
 
 
-        TextView Total = (TextView) v.findViewById(R.id.TotaltextGwp);
-        Total.setText(Float.toString(Float.valueOf(UsageGwp) + Float.valueOf(ManufacturingGwp)));
+        TextView Total = (TextView) v.findViewById(R.id.TotaltextPe);
+        Total.setText(Float.toString(Float.valueOf(UsagePe) + Float.valueOf(ManufacturingPe)));
 
-        PieChart pieChart = v.findViewById(R.id.GwpPieChart);
+        PieChart pieChart = v.findViewById(R.id.PePieChart);
 
         //Putting data inside array for the piechart
         ArrayList<PieEntry> data = new ArrayList<>();
-        data.add(new PieEntry(Float.valueOf(UsageGwp), "Utilisation"));
-        data.add(new PieEntry(Float.valueOf(ManufacturingGwp), "Fabrication"));
-        data.add(new PieEntry(Float.valueOf(ManufacturingRAMGwp), "Fabrication RAM"));
-        data.add(new PieEntry(Float.valueOf(ManufacturingCPUGwp), "Fabrication CPU"));
-        data.add(new PieEntry(Float.valueOf(ManufacturingSSDGwp), "Fabrication SSD"));
-        data.add(new PieEntry(Float.valueOf(ManufacturingHDDGwp), "Fabrication HHD"));
-        data.add(new PieEntry(Float.valueOf(ManufacturingOtherGwp), "Fabrication Autres"));
+        data.add(new PieEntry(Float.valueOf(UsagePe), "Utilisation"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingPe), "Fabrication"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingRAMPe), "Fabrication RAM"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingCPUPe), "Fabrication CPU"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingSSDPe), "Fabrication SSD"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingHDDPe), "Fabrication HHD"));
+        data.add(new PieEntry(Float.valueOf(ManufacturingOtherPe), "Fabrication Autres"));
 
         int[] Colors = {MaterialColors.getColor(v, R.attr.colorPrimary), MaterialColors.getColor(v, R.attr.colorPrimaryContainer), MaterialColors.getColor(v, R.attr.colorSecondary), MaterialColors.getColor(v, R.attr.colorSecondaryContainer), MaterialColors.getColor(v, R.attr.colorTertiary), MaterialColors.getColor(v, R.attr.colorTertiaryContainer), MaterialColors.getColor(v, R.attr.colorOutline)};
         ArrayList<Integer> colors = new ArrayList<Integer>();
@@ -95,13 +95,13 @@ public class PrimaryEnergieFragment2 extends Fragment {
 
         //Set legend data and parameters
         ArrayList<LegendEntry> EntryLegendData = new ArrayList<>();
-        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultUtilisation)) + " " + UsageGwp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[0]));
-        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufacture)) + " " + ManufacturingGwp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[1]));
-        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureRAM)) + " " + ManufacturingRAMGwp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[2]));
-        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureCPU)) + " " + ManufacturingCPUGwp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[3]));
-        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureSSD)) + " " + ManufacturingSSDGwp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[4]));
-        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureHDD)) + " " + ManufacturingHDDGwp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[5]));
-        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureOther)) + " " + ManufacturingOtherGwp, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[6]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultUtilisation)) + " " + UsagePe, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[0]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufacture)) + " " + ManufacturingPe, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[1]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureRAM)) + " " + ManufacturingRAMPe, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[2]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureCPU)) + " " + ManufacturingCPUPe, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[3]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureSSD)) + " " + ManufacturingSSDPe, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[4]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureHDD)) + " " + ManufacturingHDDPe, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[5]));
+        EntryLegendData.add(new LegendEntry((getResources().getString(R.string.resultManufactureOther)) + " " + ManufacturingOtherPe, Legend.LegendForm.CIRCLE, 11f,4f,null, Colors[6]));
 
         Legend legend = pieChart.getLegend();
         legend.setCustom(EntryLegendData);
