@@ -15,31 +15,30 @@ public class Configuration extends Application {
     private ApiResources _APIResources;
 
     // CPU configuration
-    private int _quantityCPU = -1;
-    private int _coreUnits = -1;
-    private int _tdp = -1;
+    private int _quantityCPU = 2;
+    private int _coreUnits = 16;
+    private int _tdp = 150;
     private String _architecture = "";
 
     // RAM configuration
-    private int _quantityRAM = -1;
-    private int _capacityRAM = -1;
+    private int _quantityRAM = 4;
+    private int _capacityRAM = 32;
     private String _manufacturerRAM = "";
 
     // SSD configuration
-    private int _quantitySSD = -1;
-    private int _capacitySSD = -1;
+    private int _quantitySSD = 4;
+    private int _capacitySSD = 1000;
     private String _manufacturerSSD = "";
 
     // Other configuration
-    private int _quantityHDD = -1;
+    private int _quantityHDD = 2;
     private String _serverType = "";
-    private int _quantityPSU = -1;
+    private int _quantityPSU = 2;
 
     // Configuration usage
     private String _localisation = "";
-    private int _lifespan = -1;
-    private String _methode = "";
-    private int _avgConsumption = -1;
+    private int _lifespan = 4;
+    private int _avgConsumption = 150;
 
     @Override
     public final void onCreate() {
@@ -174,14 +173,6 @@ public class Configuration extends Application {
 
     public void set_lifespan(int _lifespan) {
         this._lifespan = _lifespan;
-    }
-
-    public String get_methode() {
-        return _methode;
-    }
-
-    public void set_methode(String _methode) {
-        this._methode = _methode;
     }
 
     public int get_avgConsumption() {

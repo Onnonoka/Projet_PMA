@@ -24,33 +24,36 @@ import java.util.Set;
 public class UsageConfigFragment extends Fragment {
 
     private static final String TAG = UsageConfigFragment.class.getName();
+    private ArrayAdapter<String> _adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_usage_config, container, false);
-
-        AutoCompleteTextView dropdownLocalisation = v.findViewById(R.id.localisationAutoCompleteTextView);
-
-
-        ArrayAdapter localisationAdapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance()
+        _adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance()
                 .get_APIResources().get_countryFullList());
 
-        dropdownLocalisation.setAdapter(localisationAdapter);
+        return v;
+    }
 
-        TextInputLayout lifespanInput = v.findViewById(R.id.lifespanTextField);
-        TextInputLayout avgConsInput = v.findViewById(R.id.avgConsTextField);
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        AutoCompleteTextView dropdownLocalisation = getView().findViewById(R.id.localisationAutoCompleteTextView);
+        dropdownLocalisation.setAdapter(_adapter);
         if (!Configuration.getInstance().get_localisation().equals("")) {
-            dropdownLocalisation.setText(Configuration.getInstance().get_serverType());
-        }
-        if (Configuration.getInstance().get_lifespan() != -1) {
-            lifespanInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_lifespan()));
-        }
-        if (Configuration.getInstance().get_avgConsumption() != -1) {
-            avgConsInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_avgConsumption()));
+            dropdownLocalisation.setText(_adapter.getItem(_adapter.getPosition(Configuration.getInstance().get_localisation())), false);
+        } else {
+            Configuration.getInstance().set_localisation(_adapter.getItem(0));
+            dropdownLocalisation.setText(_adapter.getItem(0), false);
         }
 
+        TextInputLayout lifespanInput = getView().findViewById(R.id.lifespanTextField);
+        TextInputLayout avgConsInput = getView().findViewById(R.id.avgConsTextField);
+
+        lifespanInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_lifespan()));
+        avgConsInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_avgConsumption()));
 
         lifespanInput.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
@@ -93,7 +96,5 @@ public class UsageConfigFragment extends Fragment {
                 // do nothing
             }
         });
-
-        return v;
     }
 }

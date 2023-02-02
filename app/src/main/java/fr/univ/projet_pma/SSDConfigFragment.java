@@ -23,29 +23,34 @@ import java.util.List;
 public class SSDConfigFragment extends Fragment {
 
     private static final String TAG = SSDConfigFragment.class.getName();
+    private ArrayAdapter<String> _adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_ssd_config, container, false);
+        _adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_SSDManufacturerList());
+        return v;
+    }
 
-        AutoCompleteTextView dropdown = v.findViewById(R.id.manufacturerAutoCompleteTextView);
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_SSDManufacturerList());
-        dropdown.setAdapter(adapter);
-
-        TextInputLayout quantityInput = v.findViewById(R.id.quantityTextField);
-        TextInputLayout capacityInput = v.findViewById(R.id.capacityTextField);
-
-        if (Configuration.getInstance().get_quantitySSD() != -1) {
-            quantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantitySSD()));
-        }
-        if (Configuration.getInstance().get_capacitySSD() != -1) {
-            capacityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_capacitySSD()));
-        }
+        AutoCompleteTextView dropdown = getView().findViewById(R.id.manufacturerAutoCompleteTextView);
+        dropdown.setAdapter(_adapter);
         if (!Configuration.getInstance().get_manufacturerSSD().equals("")) {
-            dropdown.setText(Configuration.getInstance().get_manufacturerSSD());
+            dropdown.setText(_adapter.getItem(_adapter.getPosition(Configuration.getInstance().get_manufacturerSSD())), false);
+        } else {
+            Configuration.getInstance().set_manufacturerSSD(_adapter.getItem(0));
+            dropdown.setText(_adapter.getItem(0), false);
         }
+
+        TextInputLayout quantityInput = getView().findViewById(R.id.quantityTextField);
+        TextInputLayout capacityInput = getView().findViewById(R.id.capacityTextField);
+
+        quantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantitySSD()));
+        capacityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_capacitySSD()));
 
         quantityInput.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
@@ -88,7 +93,5 @@ public class SSDConfigFragment extends Fragment {
                 Configuration.getInstance().set_manufacturerSSD(parent.getItemAtPosition(position).toString());
             }
         });
-
-        return v;
     }
 }

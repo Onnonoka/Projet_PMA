@@ -23,25 +23,35 @@ import java.util.List;
 public class OtherConfigFragment extends Fragment {
 
     private static final String TAG = OtherConfigFragment.class.getName();
+    private ArrayAdapter<String> _adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_other_config, container, false);
+        _adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_caseTypeList());
 
-        AutoCompleteTextView dropdown = v.findViewById(R.id.serverTypeAutoCompleteTextView);
+        return v;
+    }
 
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_caseTypeList());
-        dropdown.setAdapter(adapter);
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        TextInputLayout hddQuantityInput = v.findViewById(R.id.hddQuantityTextField);
-        TextInputLayout psuQuantityInput = v.findViewById(R.id.psuQuantityTextField);
+        AutoCompleteTextView dropdown = getView().findViewById(R.id.serverTypeAutoCompleteTextView);
+        dropdown.setAdapter(_adapter);
+        if (!Configuration.getInstance().get_serverType().equals("")) {
+            dropdown.setText(_adapter.getItem(_adapter.getPosition(Configuration.getInstance().get_serverType())), false);
+        } else {
+            Configuration.getInstance().set_serverType(_adapter.getItem(0));
+            dropdown.setText(_adapter.getItem(0), false);
+        }
+
+        TextInputLayout hddQuantityInput = getView().findViewById(R.id.hddQuantityTextField);
+        TextInputLayout psuQuantityInput = getView().findViewById(R.id.psuQuantityTextField);
 
         if (Configuration.getInstance().get_quantityHDD() != -1) {
             hddQuantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantityHDD()));
-        }
-        if (!Configuration.getInstance().get_serverType().equals("")) {
-            dropdown.setText(Configuration.getInstance().get_serverType());
         }
         if (Configuration.getInstance().get_quantityPSU() != -1) {
             psuQuantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantityPSU()));
@@ -88,7 +98,5 @@ public class OtherConfigFragment extends Fragment {
                 // do nothing
             }
         });
-
-        return v;
     }
 }

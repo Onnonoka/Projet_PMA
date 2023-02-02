@@ -18,29 +18,44 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 public class CPUConfigFragment extends Fragment {
 
     private static final String TAG = CPUConfigFragment.class.getName();
+    private ArrayAdapter<String> _adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         // Inflate onCreate
         View v = inflater.inflate(R.layout.fragment_cpu_config, container, false);
+        _adapter = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_CPUFamilyList());
 
+        return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         // Set the array elements to the dropdown
-        AutoCompleteTextView dropdown = v.findViewById(R.id.archAutoCompleteTextView);
+        AutoCompleteTextView dropdown = getView().findViewById(R.id.archAutoCompleteTextView);
 
         // Bind the element to an arrayAdapter and the dropdown
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.dropdown_item, Configuration.getInstance().get_APIResources().get_CPUFamilyList());
-        dropdown.setAdapter(adapter);
+        dropdown.setAdapter(_adapter);
+        if (!Configuration.getInstance().get_architecture().equals("")) {
+            dropdown.setText(_adapter.getItem(_adapter.getPosition(Configuration.getInstance().get_architecture())), false);
+        } else {
+            Configuration.getInstance().set_architecture(_adapter.getItem(0));
+            dropdown.setText(_adapter.getItem(0), false);
+        }
 
         // Set default input text value
-        TextInputLayout quantityInput = v.findViewById(R.id.quantityTextField);
-        TextInputLayout coreUnitsInput = v.findViewById(R.id.coreUnitsTextField);
-        TextInputLayout tdpInput = v.findViewById(R.id.tdpTextField);
+        TextInputLayout quantityInput = getView().findViewById(R.id.quantityTextField);
+        TextInputLayout coreUnitsInput = getView().findViewById(R.id.coreUnitsTextField);
+        TextInputLayout tdpInput = getView().findViewById(R.id.tdpTextField);
 
         if (Configuration.getInstance().get_quantityCPU() != -1) {
             quantityInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_quantityCPU()));
@@ -50,9 +65,6 @@ public class CPUConfigFragment extends Fragment {
         }
         if (Configuration.getInstance().get_tdp() != -1) {
             tdpInput.getEditText().setText(String.valueOf(Configuration.getInstance().get_tdp()));
-        }
-        if (!Configuration.getInstance().get_architecture().equals("")) {
-            dropdown.setText(Configuration.getInstance().get_architecture());
         }
 
         // Set the onChange listener
@@ -116,8 +128,5 @@ public class CPUConfigFragment extends Fragment {
             }
         });
 
-        return v;
     }
-
-
 }
