@@ -15,6 +15,10 @@ public class ApiResources {
 
     private static final String TAG = ApiResources.class.getName();
 
+    private enum RequestStatus {
+        PENDING, COMPLETE, ERROR
+    }
+
     private Context _ctx;
 
     // api resources
@@ -23,6 +27,14 @@ public class ApiResources {
     private List<String> _SSDManufacturerList;
     private List<String> _caseTypeList;
     private Map<String, String> _countryCodeList;
+
+    private RequestStatus _dataStatus = RequestStatus.PENDING;
+
+    private RequestStatus _cpuFamily = RequestStatus.PENDING;
+    private RequestStatus _ramManufacturer = RequestStatus.PENDING;
+    private RequestStatus _ssdManufacturer = RequestStatus.PENDING;
+    private RequestStatus _case_type = RequestStatus.PENDING;
+    private RequestStatus _countryCode = RequestStatus.PENDING;
 
     public ApiResources(Context ctx) {
         _ctx = ctx;
@@ -36,6 +48,9 @@ public class ApiResources {
             public void onComplete(List<String> result) {
                 Collections.sort(result);
                 set_CPUFamilyList(result);
+                _cpuFamily = RequestStatus.COMPLETE;
+                if (taskCompleted())
+                    _dataStatus = RequestStatus.COMPLETE;
             }
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/ram_manufacturer"), new TaskRunner.Callback<List<String>>() {
@@ -43,6 +58,9 @@ public class ApiResources {
             public void onComplete(List<String> result) {
                 Collections.sort(result);
                 set_RAMManufacturerList(result);
+                _ramManufacturer = RequestStatus.COMPLETE;
+                if (taskCompleted())
+                    _dataStatus = RequestStatus.COMPLETE;
             }
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/ssd_manufacturer"), new TaskRunner.Callback<List<String>>() {
@@ -50,6 +68,9 @@ public class ApiResources {
             public void onComplete(List<String> result) {
                 Collections.sort(result);
                 set_SSDManufacturerList(result);
+                _ssdManufacturer = RequestStatus.COMPLETE;
+                if (taskCompleted())
+                    _dataStatus = RequestStatus.COMPLETE;
             }
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/case_type"), new TaskRunner.Callback<List<String>>() {
@@ -57,14 +78,30 @@ public class ApiResources {
             public void onComplete(List<String> result) {
                 Collections.sort(result);
                 set_caseTypeList(result);
+                _case_type = RequestStatus.COMPLETE;
+                if (taskCompleted())
+                    _dataStatus = RequestStatus.COMPLETE;
             }
         });
         taskRunner.executeAsync(new GETCountryConnexionTask(), new TaskRunner.Callback<Map<String, String>>() {
             @Override
             public void onComplete(Map<String, String> result) {
                 set_countryCodeList(result);
+                _countryCode = RequestStatus.COMPLETE;
+                if (taskCompleted())
+                    _dataStatus = RequestStatus.COMPLETE;
             }
         });
+    }
+
+    private boolean taskCompleted() {
+        return _cpuFamily == RequestStatus.COMPLETE && _ramManufacturer == RequestStatus.COMPLETE &&
+                _ssdManufacturer == RequestStatus.COMPLETE && _case_type == RequestStatus.COMPLETE &&
+                _countryCode == RequestStatus.COMPLETE;
+    }
+
+    public boolean isInitComplete() {
+        return _dataStatus == RequestStatus.COMPLETE;
     }
 
     public List<String> get_CPUFamilyList() {

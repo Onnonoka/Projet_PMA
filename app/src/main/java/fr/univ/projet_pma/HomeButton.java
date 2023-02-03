@@ -28,8 +28,10 @@ public class HomeButton implements View.OnClickListener {
         NetworkInfo nInfo = cm.getActiveNetworkInfo();
         boolean connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
         if (connected) {
-            Intent intent = new Intent(_ctx, ConfigScreen.class);
-            _ctx.startActivity(intent);
+            if (Configuration.getInstance().get_APIResources().isInitComplete()) {
+                Intent intent = new Intent(_ctx, ConfigScreen.class);
+                _ctx.startActivity(intent);
+            }
         } else {
             Toast.makeText(_ctx,"No internet connexion!",Toast.LENGTH_SHORT).show();
         }

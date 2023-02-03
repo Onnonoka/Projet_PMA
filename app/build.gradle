@@ -4,6 +4,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('E:\\CODE\\Cours\\M2\\Projet_PMA\\keystore.jks')
+            keyAlias 'key0'
+            storePassword 'azerty'
+            keyPassword 'azerty'
+        }
+    }
     namespace 'fr.univ.projet_pma'
     compileSdk 33
 
