@@ -6,7 +6,7 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('E:\\CODE\\Cours\\M2\\Projet_PMA\\keystore.jks')
+            storeFile file('/home/cazaux/Bureau/cours/semestre 9/PMA/Projet_PMA/keystore.jks')
             keyAlias 'key0'
             storePassword 'azerty'
             keyPassword 'azerty'
