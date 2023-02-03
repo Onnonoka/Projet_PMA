@@ -40,6 +40,73 @@ public class Configuration extends Application {
     private int _lifespan = 4;
     private int _avgConsumption = 150;
 
+    public String get_methode() {
+        return _methode;
+    }
+
+    public void set_methode(String _methode) {
+        this._methode = _methode;
+    }
+
+    private String _methode = "";
+
+    // Configuration Load (Advanced)
+    private int _1Time = 30;
+    private int _1Load = 50;
+    private int _2Time = 30;
+    private int _2Load = 30;
+    private int _3Time = 40;
+    private int _3Load = 10;
+
+    public int get_1Time() {
+        return _1Time;
+    }
+
+    public void set_1Time(int _1Time) {
+        this._1Time = _1Time;
+    }
+
+    public int get_1Load() {
+        return _1Load;
+    }
+
+    public void set_1Load(int _1Load) {
+        this._1Load = _1Load;
+    }
+
+    public int get_2Time() {
+        return _2Time;
+    }
+
+    public void set_2Time(int _2Time) {
+        this._2Time = _2Time;
+    }
+
+    public int get_2Load() {
+        return _2Load;
+    }
+
+    public void set_2Load(int _2Load) {
+        this._2Load = _2Load;
+    }
+
+    public int get_3Time() {
+        return _3Time;
+    }
+
+    public void set_3Time(int _3Time) {
+        this._3Time = _3Time;
+    }
+
+    public int get_3Load() {
+        return _3Load;
+    }
+
+    public void set_3Load(int _3Load) {
+        this._3Load = _3Load;
+    }
+
+
     @Override
     public final void onCreate() {
         super.onCreate();

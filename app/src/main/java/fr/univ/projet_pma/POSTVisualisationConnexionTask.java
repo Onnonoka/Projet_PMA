@@ -13,7 +13,7 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
     private static final String TAG = POSTVisualisationConnexionTask.class.getName();
 
     public POSTVisualisationConnexionTask() {
-        super("/server/?verbose=true");
+        super("/server/?verbose=true&allocation=TOTAL");
     }
 
     @Override
@@ -50,6 +50,7 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
                         JSONObject ssdJsonObject = new JSONObject();
                     JSONObject powerUnitJsonObject = new JSONObject();
                 JSONObject usageJsonObject = new JSONObject();
+                    JSONArray timeWorkloadJsonArray = new JSONArray();
 
             modelJsonObject.put("type", Configuration.getInstance().get_serverType());
             jsonObject.put("model", modelJsonObject);
@@ -89,9 +90,26 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
                     Configuration.getInstance().get_localisation()
             );
             usageJsonObject.put("usage_location", locationCode);
-            usageJsonObject.put("hours_electrical_consumption", Configuration.getInstance().get_avgConsumption());
+            if (Configuration.getInstance().get_methode().equals(Configuration.getInstance().get_APIResources().get_methodeList().get(0))) {
+                usageJsonObject.put("hours_electrical_consumption", Configuration.getInstance().get_avgConsumption());
+            } else {
+                usageJsonObject.put("hours_electrical_consumption", JSONObject.NULL);
+                JSONObject slot1 = new JSONObject();
+                JSONObject slot2 = new JSONObject();
+                JSONObject slot3 = new JSONObject();
+                slot1.put("time_percentage",  Configuration.getInstance().get_1Time());
+                slot1.put("load_percentage",  Configuration.getInstance().get_1Load());
+                slot2.put("time_percentage",  Configuration.getInstance().get_2Time());
+                slot2.put("load_percentage",  Configuration.getInstance().get_2Load());
+                slot3.put("time_percentage",  Configuration.getInstance().get_3Time());
+                slot3.put("load_percentage",  Configuration.getInstance().get_3Load());
+                timeWorkloadJsonArray.put(slot1);
+                timeWorkloadJsonArray.put(slot2);
+                timeWorkloadJsonArray.put(slot3);
+            }
+            usageJsonObject.put("time_workload", timeWorkloadJsonArray);
             jsonObject.put("usage", usageJsonObject);
-
+            Log.i(TAG, jsonObject.toString());
             return jsonObject;
         } catch (Exception e) {
             e.printStackTrace();

@@ -28,6 +28,16 @@ public class ApiResources {
     private List<String> _caseTypeList;
     private Map<String, String> _countryCodeList;
 
+    public List<String> get_methodeList() {
+        return _methodeList;
+    }
+
+    public void set_methodeList(List<String> _methodeList) {
+        this._methodeList = _methodeList;
+    }
+
+    private List<String> _methodeList;
+
     private RequestStatus _dataStatus = RequestStatus.PENDING;
 
     private RequestStatus _cpuFamily = RequestStatus.PENDING;
@@ -92,6 +102,8 @@ public class ApiResources {
                     _dataStatus = RequestStatus.COMPLETE;
             }
         });
+        String[] itemNames = _ctx.getResources().getStringArray(R.array.method);
+        _methodeList = Arrays.asList(itemNames);
     }
 
     private boolean taskCompleted() {

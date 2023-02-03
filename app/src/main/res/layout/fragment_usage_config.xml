@@ -57,7 +57,7 @@
             android:labelFor="@id/methodTextField">
 
             <AutoCompleteTextView
-                android:id="@+id/dropdown_menu"
+                android:id="@+id/methodeAutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -108,6 +108,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/loadAdvenceConfig"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
