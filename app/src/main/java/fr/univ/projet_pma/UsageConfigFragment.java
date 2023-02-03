@@ -150,7 +150,8 @@ public class UsageConfigFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Configuration.getInstance().set_1Time(Integer.parseInt(s.toString()));
+                if (s.length() > 0)
+                    Configuration.getInstance().set_1Time(Integer.parseInt(s.toString()));
             }
 
             @Override
@@ -166,7 +167,8 @@ public class UsageConfigFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Configuration.getInstance().set_2Time(Integer.parseInt(s.toString()));
+                if (s.length() > 0)
+                    Configuration.getInstance().set_2Time(Integer.parseInt(s.toString()));
             }
 
             @Override
@@ -182,7 +184,8 @@ public class UsageConfigFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Configuration.getInstance().set_3Time(Integer.parseInt(s.toString()));
+                if (s.length() > 0)
+                    Configuration.getInstance().set_3Time(Integer.parseInt(s.toString()));
             }
 
             @Override
@@ -198,7 +201,8 @@ public class UsageConfigFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Configuration.getInstance().set_1Time(Integer.parseInt(s.toString()));
+                if (s.length() > 0)
+                    Configuration.getInstance().set_1Time(Integer.parseInt(s.toString()));
             }
 
             @Override
@@ -214,7 +218,8 @@ public class UsageConfigFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Configuration.getInstance().set_1Load(Integer.parseInt(s.toString()));
+                if (s.length() > 0)
+                    Configuration.getInstance().set_1Load(Integer.parseInt(s.toString()));
             }
 
             @Override
@@ -230,7 +235,8 @@ public class UsageConfigFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Configuration.getInstance().set_2Load(Integer.parseInt(s.toString()));
+                if (s.length() > 0)
+                    Configuration.getInstance().set_2Load(Integer.parseInt(s.toString()));
             }
 
             @Override
@@ -246,7 +252,8 @@ public class UsageConfigFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Configuration.getInstance().set_3Load(Integer.parseInt(s.toString()));
+                if (s.length() > 0)
+                    Configuration.getInstance().set_3Load(Integer.parseInt(s.toString()));
             }
 
             @Override
