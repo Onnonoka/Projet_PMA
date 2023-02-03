@@ -40,6 +40,12 @@ public class AnalyzeButton implements View.OnClickListener {
                     Log.i(TAG, "TASK Complete");
                 }
             }
+
+            @Override
+            public void onError(Exception e) {
+                Toast.makeText(_ctx,"An error has occurred!",Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
 

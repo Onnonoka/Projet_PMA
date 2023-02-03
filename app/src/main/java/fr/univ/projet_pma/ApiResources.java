@@ -38,8 +38,6 @@ public class ApiResources {
 
     private List<String> _methodeList;
 
-    private RequestStatus _dataStatus = RequestStatus.PENDING;
-
     private RequestStatus _cpuFamily = RequestStatus.PENDING;
     private RequestStatus _ramManufacturer = RequestStatus.PENDING;
     private RequestStatus _ssdManufacturer = RequestStatus.PENDING;
@@ -59,9 +57,13 @@ public class ApiResources {
                 Collections.sort(result);
                 set_CPUFamilyList(result);
                 _cpuFamily = RequestStatus.COMPLETE;
-                if (taskCompleted())
-                    _dataStatus = RequestStatus.COMPLETE;
             }
+
+            @Override
+            public void onError(Exception e) {
+                _cpuFamily = RequestStatus.ERROR;
+            }
+
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/ram_manufacturer"), new TaskRunner.Callback<List<String>>() {
             @Override
@@ -69,8 +71,11 @@ public class ApiResources {
                 Collections.sort(result);
                 set_RAMManufacturerList(result);
                 _ramManufacturer = RequestStatus.COMPLETE;
-                if (taskCompleted())
-                    _dataStatus = RequestStatus.COMPLETE;
+            }
+
+            @Override
+            public void onError(Exception e) {
+                _ramManufacturer = RequestStatus.ERROR;
             }
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/ssd_manufacturer"), new TaskRunner.Callback<List<String>>() {
@@ -79,8 +84,11 @@ public class ApiResources {
                 Collections.sort(result);
                 set_SSDManufacturerList(result);
                 _ssdManufacturer = RequestStatus.COMPLETE;
-                if (taskCompleted())
-                    _dataStatus = RequestStatus.COMPLETE;
+            }
+
+            @Override
+            public void onError(Exception e) {
+                _ssdManufacturer = RequestStatus.ERROR;
             }
         });
         taskRunner.executeAsync(new GETResourcesConnexionTask("/utils/case_type"), new TaskRunner.Callback<List<String>>() {
@@ -89,8 +97,11 @@ public class ApiResources {
                 Collections.sort(result);
                 set_caseTypeList(result);
                 _case_type = RequestStatus.COMPLETE;
-                if (taskCompleted())
-                    _dataStatus = RequestStatus.COMPLETE;
+            }
+
+            @Override
+            public void onError(Exception e) {
+                _case_type = RequestStatus.ERROR;
             }
         });
         taskRunner.executeAsync(new GETCountryConnexionTask(), new TaskRunner.Callback<Map<String, String>>() {
@@ -98,22 +109,27 @@ public class ApiResources {
             public void onComplete(Map<String, String> result) {
                 set_countryCodeList(result);
                 _countryCode = RequestStatus.COMPLETE;
-                if (taskCompleted())
-                    _dataStatus = RequestStatus.COMPLETE;
+            }
+
+            @Override
+            public void onError(Exception e) {
+                _countryCode = RequestStatus.ERROR;
             }
         });
         String[] itemNames = _ctx.getResources().getStringArray(R.array.method);
         _methodeList = Arrays.asList(itemNames);
     }
 
-    private boolean taskCompleted() {
+    public boolean isInitComplete() {
         return _cpuFamily == RequestStatus.COMPLETE && _ramManufacturer == RequestStatus.COMPLETE &&
                 _ssdManufacturer == RequestStatus.COMPLETE && _case_type == RequestStatus.COMPLETE &&
                 _countryCode == RequestStatus.COMPLETE;
     }
 
-    public boolean isInitComplete() {
-        return _dataStatus == RequestStatus.COMPLETE;
+    public boolean isInitError() {
+        return _cpuFamily == RequestStatus.ERROR || _ramManufacturer == RequestStatus.ERROR ||
+                _ssdManufacturer == RequestStatus.ERROR || _case_type == RequestStatus.ERROR ||
+                _countryCode == RequestStatus.ERROR;
     }
 
     public List<String> get_CPUFamilyList() {

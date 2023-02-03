@@ -111,6 +111,9 @@
             android:id="@+id/loadAdvenceConfig"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/avgConsTextField"
             android:visibility="gone">
@@ -122,23 +125,25 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@id/linearLayout2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:paddingEnd="4dp">
 
 
                 <TextView
                     android:id="@+id/Page1.1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Slot 1/3"></TextView>
+                    android:text="@string/slot_1_3"
+                    android:fontFamily="@font/maven_pro"
+                    android:textSize="20sp"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/Time1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="Time (%)"
+                    android:hint="@string/time"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Page1.1">
 
@@ -154,10 +159,8 @@
                     android:id="@+id/Load1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="Load (%)"
+                    android:hint="@string/load"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Time1">
 
@@ -177,22 +180,25 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout"
-                app:layout_constraintEnd_toStartOf="@+id/LinearLayout3">
+                app:layout_constraintEnd_toStartOf="@+id/LinearLayout3"
+                android:gravity="center"
+                android:paddingEnd="4dp"
+                android:paddingStart="4dp">
 
                 <TextView
                     android:id="@+id/Page2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Slot 2/3"></TextView>
+                    android:text="@string/slot_2_3"
+                    android:fontFamily="@font/maven_pro"
+                    android:textSize="20sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/Time2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="Time (%)"
+                    android:hint="@string/time"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Page2">
 
@@ -208,10 +214,8 @@
                     android:id="@+id/Load2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="Load (%)"
+                    android:hint="@string/load"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/methodTextField">
 
@@ -232,22 +236,24 @@
                 android:orientation="vertical"
                 app:layout_constraintStart_toEndOf="@id/linearLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:paddingStart="4dp">
 
                 <TextView
                     android:id="@+id/Page3"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Slot 3/3"></TextView>
+                    android:text="@string/slot_3_3"
+                    android:fontFamily="@font/maven_pro"
+                    android:textSize="20sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/Time3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="Time (%)"
+                    android:hint="@string/time"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/methodTextField">
 
@@ -263,10 +269,8 @@
                     android:id="@+id/Load3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="Load (%)"
+                    android:hint="@string/load"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/methodTextField">
 

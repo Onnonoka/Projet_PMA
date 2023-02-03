@@ -31,6 +31,8 @@ public class HomeButton implements View.OnClickListener {
             if (Configuration.getInstance().get_APIResources().isInitComplete()) {
                 Intent intent = new Intent(_ctx, ConfigScreen.class);
                 _ctx.startActivity(intent);
+            } else if (Configuration.getInstance().get_APIResources().isInitError()) {
+                Toast.makeText(_ctx,"No response from the server!",Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(_ctx,"No internet connexion!",Toast.LENGTH_SHORT).show();
