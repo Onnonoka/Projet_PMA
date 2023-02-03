@@ -41,16 +41,16 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
     private JSONObject buildJSON() {
         try {
             JSONObject jsonObject = new JSONObject();
-                JSONObject modelJsonObject = new JSONObject();
-                JSONObject configJsonObject = new JSONObject();
-                    JSONObject cpuJsonObject = new JSONObject();
-                    JSONArray ramJsonArray = new JSONArray();
-                        JSONObject ramJsonObject = new JSONObject();
-                    JSONArray diskJsonArray = new JSONArray();
-                        JSONObject ssdJsonObject = new JSONObject();
-                    JSONObject powerUnitJsonObject = new JSONObject();
-                JSONObject usageJsonObject = new JSONObject();
-                    JSONArray timeWorkloadJsonArray = new JSONArray();
+            JSONObject modelJsonObject = new JSONObject();
+            JSONObject configJsonObject = new JSONObject();
+            JSONObject cpuJsonObject = new JSONObject();
+            JSONArray ramJsonArray = new JSONArray();
+            JSONObject ramJsonObject = new JSONObject();
+            JSONArray diskJsonArray = new JSONArray();
+            JSONObject ssdJsonObject = new JSONObject();
+            JSONObject powerUnitJsonObject = new JSONObject();
+            JSONObject usageJsonObject = new JSONObject();
+            JSONArray timeWorkloadJsonArray = new JSONArray();
 
             modelJsonObject.put("type", Configuration.getInstance().get_serverType());
             jsonObject.put("model", modelJsonObject);
@@ -77,6 +77,7 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
                 JSONObject hddJsonObject = new JSONObject();
                 hddJsonObject.put("type", "hdd");
                 hddJsonObject.put("units", Configuration.getInstance().get_quantityHDD());
+                hddJsonObject.put("capacity", 1000);
                 diskJsonArray.put(hddJsonObject);
             }
             configJsonObject.put("disk", diskJsonArray);
@@ -92,7 +93,13 @@ public class POSTVisualisationConnexionTask extends URLConnexionTask implements 
             usageJsonObject.put("usage_location", locationCode);
             if (Configuration.getInstance().get_methode().equals(Configuration.getInstance().get_APIResources().get_methodeList().get(0))) {
                 usageJsonObject.put("hours_electrical_consumption", Configuration.getInstance().get_avgConsumption());
-            } else {
+            } else if (Configuration.getInstance().get_methode().equals(Configuration.getInstance().get_APIResources().get_methodeList().get(1))) {
+                usageJsonObject.put("hours_electrical_consumption", JSONObject.NULL);
+                JSONObject slot1 = new JSONObject();
+                slot1.put("time_percentage",  100);
+                slot1.put("load_percentage",  50);
+                timeWorkloadJsonArray.put(slot1);
+            }else {
                 usageJsonObject.put("hours_electrical_consumption", JSONObject.NULL);
                 JSONObject slot1 = new JSONObject();
                 JSONObject slot2 = new JSONObject();

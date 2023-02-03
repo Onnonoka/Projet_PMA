@@ -44,7 +44,7 @@ public class Jsonparsing {
         JSONObject impact = FullData.getJSONObject("impacts");
         JSONObject type = impact.getJSONObject(t);
         Usage = type.getString("use");
-        Manufacturing = Double.toString(Math.abs(type.getDouble("manufacture")));
+
 
         JSONObject verbose = FullData.getJSONObject("verbose");
         JSONObject CPU = verbose.getJSONObject("CPU-1");
@@ -93,6 +93,7 @@ public class Jsonparsing {
         tamp += ConcatenationDouble(ASSEMBLY.getDouble("units"), type_ASSEMBLY.getDouble("value"));
 
         ManufacturingOther = Double.toString(tamp);
+        Manufacturing = Float.toString(Float.parseFloat(ManufacturingCPU) + Float.parseFloat(ManufacturingRAM) + Float.parseFloat(ManufacturingSSD) + Float.parseFloat(ManufacturingHDD) + Float.parseFloat(ManufacturingOther));
     }
 
     public String getUsage() {
@@ -116,4 +117,5 @@ public class Jsonparsing {
     public String getManufacturingOther() {
         return ManufacturingOther;
     }
+
 }

@@ -45,6 +45,8 @@ public class UsageConfigFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        _loadAdvancedViewGroup = getView().findViewById(R.id.loadAdvenceConfig);
+
         AutoCompleteTextView dropdownLocalisation = getView().findViewById(R.id.localisationAutoCompleteTextView);
         dropdownLocalisation.setAdapter(_adapterLocation);
         if (!Configuration.getInstance().get_localisation().equals("")) {
@@ -58,12 +60,16 @@ public class UsageConfigFragment extends Fragment {
         dropdownMethode.setAdapter(_adapterMethode);
         if (!Configuration.getInstance().get_methode().equals("")) {
             dropdownMethode.setText(_adapterMethode.getItem(_adapterMethode.getPosition(Configuration.getInstance().get_methode())), false);
+            if (Configuration.getInstance().get_methode().equals(Configuration.getInstance().get_APIResources().get_methodeList().get(2))) {
+                setLoadAdvancedConfigVisibility(View.VISIBLE);
+            } else {
+                setLoadAdvancedConfigVisibility(View.GONE);
+            }
         } else {
             Configuration.getInstance().set_methode(_adapterMethode.getItem(0));
             dropdownMethode.setText(_adapterMethode.getItem(0), false);
         }
 
-        _loadAdvancedViewGroup = getView().findViewById(R.id.loadAdvenceConfig);
 
         TextInputLayout lifespanInput = getView().findViewById(R.id.lifespanTextField);
         TextInputLayout avgConsInput = getView().findViewById(R.id.avgConsTextField);
